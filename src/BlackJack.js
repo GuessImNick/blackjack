@@ -23,6 +23,7 @@ export const BlackJack = () => {
   const [dealerTurn, setDealerTurn] = useState(false);
   const [dealerBust, setDealerBust] = useState(false);
   const [startResults, setStartResults] = useState(false);
+  const [user, setUser] = useState(true)
 
   //Function that Adds cards to the players hand
   //player must have less than 7 cards and less then 21 points to draw
@@ -105,10 +106,6 @@ export const BlackJack = () => {
   };
 
   //Payout and Chips function
-  const betPay = (payRate) => {
-    setPayout(parseInt((bet*payRate)))
-  }
-
   const setPay = (payRate) => {
     let payo = bet*payRate
     if(startResults === true){
@@ -116,6 +113,8 @@ export const BlackJack = () => {
       localStorage.setItem('blackjack_chips', pay)
     }
   }
+
+
   //All game logic is handled in the useEffects below
 
   //This use effect manages hte players points and sets different checks
@@ -202,6 +201,15 @@ export const BlackJack = () => {
       }
     }
   }, [startResults]);
+
+  useEffect(() => {
+    if(localStorage.getItem('blackjack_chips')){
+      setUser(true)
+    } else {
+      localStorage.setItem('blackjack_chips', 1000)
+      setChips(parseInt(localStorage.getItem("blackjack_chips")))
+    }
+  }, [user])
 
   return gameStart === false ? (
     <div>
