@@ -1,0 +1,48 @@
+.dealer-card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100px;
+    height: 200px;
+    margin-left: 45%;
+}
+
+.dealerCard-1 {
+    position: relative;
+}
+
+.dealerCard-2 {
+    position: relative;
+    bottom: 120px;
+    right: 25px;
+}
+
+.dealerCard-3 {
+    position: relative;
+    bottom: 290px;
+    left: 110px;
+}
+
+.dealerCard-4 {
+    position: relative;
+    bottom: 435px;
+    left: 220px;
+}
+
+.dealerCard-5 {
+    position: relative;
+    bottom: 580px;
+    left: 330px;
+}
+
+.dealerCard-6 {
+    position: relative;
+    bottom: 675px;
+    left: 165px;
+}
+
+.dealerCard-7 {
+    position: relative;
+    bottom: 818px;
+    left: 275px;
+}

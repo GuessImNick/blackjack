@@ -1,13 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: 'Bebas Neue', cursive;
+  word-spacing: 2px;
+  display: flex;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
+
+button {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 30px;
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.game-start-button {
+  border: 1px white solid;
+  width: 200px;
+  height: 50px;
+  align-self: center;
+}
+
+.game-start-button:hover {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+}
+
+
