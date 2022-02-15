@@ -13,7 +13,6 @@ export const BlackJack = () => {
   const [dealerCards, setDealerCards] = useState([]);
   const [dealerCardPoints, setDealerCardPoints] = useState(0);
   const [bet, setBet] = useState(0);
-  const [payout, setPayout] = useState(0);
   const [chips, setChips] = useState(parseInt(localStorage.getItem("blackjack_chips")));
   const [status, setStatus] = useState("Welcome To BlackJack");
   const [bust, setBust] = useState(false);
@@ -100,7 +99,6 @@ export const BlackJack = () => {
     setPlayerCardPoints(0);
     setDealerCardPoints(0);
     setStatus('Welcome To Blackjack');
-    setPayout(0);
     setBet(0);
     setChips(parseInt(localStorage.getItem("blackjack_chips")));
   };
