@@ -13,7 +13,9 @@ export const BlackJack = () => {
   const [dealerCards, setDealerCards] = useState([]);
   const [dealerCardPoints, setDealerCardPoints] = useState(0);
   const [bet, setBet] = useState(0);
-  const [chips, setChips] = useState(parseInt(localStorage.getItem("blackjack_chips")));
+  const [chips, setChips] = useState(
+    parseInt(localStorage.getItem("blackjack_chips"))
+  );
   const [status, setStatus] = useState("Welcome To BlackJack");
   const [bust, setBust] = useState(false);
   const [blackjack, setBlackJack] = useState(false);
@@ -22,7 +24,7 @@ export const BlackJack = () => {
   const [dealerTurn, setDealerTurn] = useState(false);
   const [dealerBust, setDealerBust] = useState(false);
   const [startResults, setStartResults] = useState(false);
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(true);
 
   //Function that Adds cards to the players hand
   //player must have less than 7 cards and less then 21 points to draw
@@ -67,21 +69,21 @@ export const BlackJack = () => {
 
   const dealerBj = () => {
     setDealerBlackjack(!dealerBlackjack);
-  }
+  };
 
   const startBet = (value) => {
     setBet(parseInt(value));
-    setChips(parseInt(chips - value))
-  }
+    setChips(parseInt(chips - value));
+  };
 
   //When start is invoked it shuffles the deck and draws cards
   //for the dealer and player, also setting (gameStart) to true
   const start = () => {
     API_CALLS.shuffleCards();
-    getPlayerCards();
-    getDealerCards();
-    getPlayerCards();
-    getDealerCards();
+    setTimeout(getPlayerCards, 500);
+    setTimeout(getDealerCards, 1000);
+    setTimeout(getPlayerCards, 1500);
+    setTimeout(getDealerCards, 2000);
     startGame();
   };
 
@@ -98,20 +100,19 @@ export const BlackJack = () => {
     setDealerCards([]);
     setPlayerCardPoints(0);
     setDealerCardPoints(0);
-    setStatus('Welcome To Blackjack');
+    setStatus("Welcome To Blackjack");
     setBet(0);
     setChips(parseInt(localStorage.getItem("blackjack_chips")));
   };
 
   //Payout and Chips function
   const setPay = (payRate) => {
-    let payo = bet*payRate
-    if(startResults === true){
-      const pay = parseInt(chips + payo)
-      localStorage.setItem('blackjack_chips', pay)
+    let payo = bet * payRate;
+    if (startResults === true) {
+      const pay = parseInt(chips + payo);
+      localStorage.setItem("blackjack_chips", pay);
     }
-  }
-
+  };
 
   //All game logic is handled in the useEffects below
 
@@ -148,20 +149,20 @@ export const BlackJack = () => {
     }
   }, [dealerCards]);
 
-
   //This useEffect manages the dealers actions based off of their points
   useEffect(() => {
-    if(bust !== true){
-    if (dealerTurn === true && dealerCardPoints <= 16) {
-      getDealerCards();
-    } else if (dealerTurn === true && dealerCardPoints >= 17) {
-      if (dealerCardPoints > 21) {
-        dealBust();
-        setStartResults(true);
-      } else {
-        setStartResults(true);
+    if (bust !== true) {
+      if (dealerTurn === true && dealerCardPoints <= 16) {
+        getDealerCards();
+      } else if (dealerTurn === true && dealerCardPoints >= 17) {
+        if (dealerCardPoints > 21) {
+          dealBust();
+          setStartResults(true);
+        } else {
+          setStartResults(true);
+        }
       }
-    }} else {
+    } else {
       setStartResults(true);
     }
     setDealerCardPoints(getCardPoints(dealerCards));
@@ -183,10 +184,10 @@ export const BlackJack = () => {
         setStatus("Blackjack Tie! Take Your Chips");
       } else if (blackjack === true && dealerBlackjack === false) {
         setPay(2);
-        setStatus('Player Blackjack! You Win!')
-      } else if(blackjack === false && dealerBlackjack === true) {
+        setStatus("Player Blackjack! You Win!");
+      } else if (blackjack === false && dealerBlackjack === true) {
         setPay(0);
-        setStatus('Dealer Blackjack! You Lose Your Bet')
+        setStatus("Dealer Blackjack! You Lose Your Bet");
       } else if (dealerPoints === playerPoints) {
         setPay(0);
         setStatus("You Tied With The Dealer! You Lose!");
@@ -201,13 +202,13 @@ export const BlackJack = () => {
   }, [startResults]);
 
   useEffect(() => {
-    if(localStorage.getItem('blackjack_chips')){
-      setUser(true)
+    if (localStorage.getItem("blackjack_chips")) {
+      setUser(true);
     } else {
-      localStorage.setItem('blackjack_chips', 1000)
-      setChips(parseInt(localStorage.getItem("blackjack_chips")))
+      localStorage.setItem("blackjack_chips", 1000);
+      setChips(parseInt(localStorage.getItem("blackjack_chips")));
     }
-  }, [user])
+  }, [user]);
 
   return gameStart === false ? (
     <div>

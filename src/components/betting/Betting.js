@@ -34,8 +34,9 @@ export const Betting = ({ start, chips, bet }) => {
       <fieldset className="bet-field">
         <label className="chip-label" htmlFor="chips">
           Current Chips
+          <input readOnly name="chips" id="chips" placeholder={chips}></input>
         </label>
-        <input readOnly name="chips" id="chips" placeholder={chips}></input>
+        
         <lable htmlFor="bet" className="bet-label">
           Bet Amount
         </lable>
